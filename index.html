@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portofolio Nabila - Mahasiswa Sistem Informasi, UI/UX Designer & Web Developer bertema kedalaman lautan yang modern dan interaktif.">
+  <title>Nabila | Portofolio Bahari & Web Developer</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
+  
+  <!-- Google Fonts: Outfit, Plus Jakarta Sans, and Caveat (Cursive accent like reference) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Ocean Background Effects -->
+  <div class="ocean-ambient-bg" id="oceanAmbient">
+    <div class="sun-rays"></div>
+    <div class="floating-bubbles-container" id="bubblesContainer"></div>
+    
+    <!-- SVG Floating Jellyfish (Inspired by Reference Image) -->
+    <div class="ambient-jellyfish jellyfish-hero" aria-hidden="true">
+      <svg viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="jellyCapGrad" cx="50%" cy="30%" r="60%">
+            <stop offset="0%" stop-color="#d4f4ff" stop-opacity="0.95" />
+            <stop offset="45%" stop-color="#7dd3fc" stop-opacity="0.8" />
+            <stop offset="90%" stop-color="#0284c7" stop-opacity="0.6" />
+            <stop offset="100%" stop-color="#0369a1" stop-opacity="0.2" />
+          </radialGradient>
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+        <!-- Jellyfish Cap -->
+        <path d="M30,110 C20,60 50,15 100,15 C150,15 180,60 170,110 C160,125 140,115 125,125 C110,135 90,135 75,125 C60,115 40,125 30,110 Z" 
+              fill="url(#jellyCapGrad)" filter="url(#glow)" />
+        <!-- Inner Dots/Pattern -->
+        <circle cx="85" cy="65" r="4" fill="#ffffff" opacity="0.8" />
+        <circle cx="105" cy="55" r="5" fill="#ffffff" opacity="0.9" />
+        <circle cx="120" cy="75" r="3.5" fill="#ffffff" opacity="0.7" />
+        <circle cx="70" cy="85" r="3" fill="#ffffff" opacity="0.6" />
+        <circle cx="100" cy="85" r="4.5" fill="#ffffff" opacity="0.85" />
+        <circle cx="135" cy="90" r="3" fill="#ffffff" opacity="0.6" />
+        <!-- Floating Tentacles -->
+        <path class="tentacle t1" d="M60,125 Q45,170 65,210 T50,255" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85"/>
+        <path class="tentacle t2" d="M80,130 Q105,175 85,215 T95,258" stroke="#bae6fd" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.9"/>
+        <path class="tentacle t3" d="M100,132 Q75,170 105,220 T110,260" stroke="#e0f2fe" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.95"/>
+        <path class="tentacle t4" d="M120,130 Q145,170 120,218 T135,255" stroke="#7dd3fc" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85"/>
+        <path class="tentacle t5" d="M140,125 Q155,165 140,210 T150,250" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+      </svg>
+    </div>
+
+    <!-- Second mini jellyfish -->
+    <div class="ambient-jellyfish jellyfish-secondary" aria-hidden="true">
+      <svg viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40,105 C30,65 55,25 100,25 C145,25 170,65 160,105 C150,118 135,110 120,118 C105,126 95,126 80,118 C65,110 50,118 40,105 Z" 
+              fill="url(#jellyCapGrad)" opacity="0.65" />
+        <path class="tentacle t2" d="M70,118 Q55,160 70,200 T65,240" stroke="#7dd3fc" stroke-width="2.5" fill="none" opacity="0.7"/>
+        <path class="tentacle t3" d="M100,122 Q120,165 100,205 T105,245" stroke="#bae6fd" stroke-width="3" fill="none" opacity="0.8"/>
+        <path class="tentacle t4" d="M130,118 Q140,160 125,200 T135,238" stroke="#38bdf8" stroke-width="2.5" fill="none" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <!-- Swimming Fish Silhouettes -->
+    <div class="ambient-fish-school" aria-hidden="true">
+      <div class="fish fish-1"></div>
+      <div class="fish fish-2"></div>
+      <div class="fish fish-3"></div>
+      <div class="fish fish-4"></div>
+      <div class="fish fish-5"></div>
+    </div>
+  </div>
+
+  <!-- Sound Toggle Pill (Web Audio Underwater Ambient Synthesizer) -->
+  <button id="soundToggle" class="sound-toggle" title="Putar Suasana Ombak & Laut" aria-label="Toggle Suasana Laut">
+    <i class="fa-solid fa-volume-xmark" id="soundIcon"></i>
+    <span class="sound-label">Suasana Laut</span>
+  </button>
+
+  <!-- ==================== 1. NAVBAR ==================== -->
+  <header class="navbar-wrapper" id="mainHeader">
+    <nav class="navbar container">
+      <!-- Logo in oceanic curved badge style -->
+      <a href="#hero" class="nav-logo" aria-label="Beranda Nabila">
+        <div class="logo-icon-wrap">
+          <svg viewBox="0 0 50 50" fill="none" class="brand-wave-svg">
+            <path d="M10 32C15 22 25 20 30 25C35 30 40 22 45 15C42 35 25 42 10 32Z" fill="#0077b6"/>
+            <path d="M5 25C12 14 24 12 32 18C40 24 45 15 48 8C46 32 24 40 5 25Z" fill="#00b4d8" opacity="0.7"/>
+            <circle cx="28" cy="14" r="3" fill="#90e0ef"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">NABILA</span>
+          <span class="logo-tag">OCEAN PORTOFOLIO</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero" class="nav-item active"><i class="fa-solid fa-water"></i> Beranda</a></li>
+        <li><a href="#about" class="nav-item"><i class="fa-solid fa-user-astronaut"></i> Tentang Saya</a></li>
+        <li><a href="#experience" class="nav-item"><i class="fa-solid fa-anchor"></i> Pengalaman</a></li>
+        <li><a href="#portfolio" class="nav-item"><i class="fa-solid fa-palette"></i> Hasil Karya</a></li>
+        <li><a href="#blog" class="nav-item"><i class="fa-solid fa-book-open"></i> Rangkuman PARTISI</a></li>
+        <li><a href="#contact" class="nav-item"><i class="fa-solid fa-paper-plane"></i> Kontak</a></li>
+      </ul>
+
+      <!-- Quick Action / CTA Pill Button (Matching the Reference UI) -->
+      <div class="nav-action-group">
+        <a href="#contact" class="nav-cta-btn">
+          <span>Hubungi Saya</span>
+          <i class="fa-solid fa-arrow-right-long"></i>
+        </a>
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Buka Menu Navigasi">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ==================== 1. HERO SECTION ==================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container container">
+        <div class="hero-grid">
+          
+          <!-- Hero Text Content -->
+          <div class="hero-content">
+            <!-- Badge pill -->
+            <div class="hero-badge">
+              <span class="badge-dot"></span>
+              <span class="badge-text"><i class="fa-solid fa-compass fa-spin" style="--fa-animation-duration: 8s;"></i> Siap Berkolaborasi & Terbuka untuk Peluang</span>
+            </div>
+
+            <!-- Big Oceanic Catchphrase (Inspired by "LET THE NATURE set you free") -->
+            <h1 class="hero-title">
+              <span class="title-main">HALO, AKU NABILA</span>
+              <span class="title-cursive">dive deep &amp; thrive</span>
+            </h1>
+
+            <!-- Full Name & Primary Identity -->
+            <p class="hero-tagline">
+              Mahasiswa Sistem Informasi <span aria-hidden="true">|</span> Antusias Web Programming
+            </p>
+
+            <!-- Descriptive Paragraph -->
+            <p class="hero-description">
+              Senang mengeksplorasi ide kreatif dan mengembangkannya menjadi karya digital
+            </p>
+
+            <!-- CTA Action Buttons -->
+            <div class="hero-cta-group">
+              <a href="#portfolio" class="btn btn-primary">
+                <i class="fa-solid fa-compass"></i>
+                <span>Jelajahi Karya</span>
+              </a>
+              <a href="#contact" class="btn btn-secondary">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Kirim Pesan</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Visual & Profile Frame -->
+          <div class="hero-visual">
+            <div class="profile-card-ocean">
+              <!-- Animated Glowing Rings -->
+              <div class="ocean-ripple ripple-1"></div>
+              <div class="ocean-ripple ripple-2"></div>
+              <div class="ocean-ripple ripple-3"></div>
+
+              <!-- Organic Ocean Pearl Avatar Container -->
+              <div class="profile-avatar-frame">
+                <!-- Profile Image with Oceanic Filter -->
+                <img src="assets/profile-bilovw.jpeg"
+                     alt="Foto Profil Nabila" 
+                     class="profile-img" 
+                     id="profileImage">
+                
+                <!-- Decorative Pearl Shell Indicator -->
+                <div class="pearl-badge" title="Status: Aktif Menuntut Ilmu">
+                  <i class="fa-solid fa-gem"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Organic Wave Divider into About Section (Inspired by Reference Lower Cutout) -->
+      <div class="hero-bottom-wave">
+        <svg viewBox="0 0 1440 240" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,96 C280,180 520,30 840,110 C1120,180 1320,80 1440,120 L1440,240 L0,240 Z" fill="rgba(14, 116, 144, 0.25)"/>
+          <path d="M0,130 C320,60 620,190 960,110 C1200,50 1360,140 1440,160 L1440,240 L0,240 Z" fill="rgba(6, 44, 77, 0.7)"/>
+          <path d="M0,170 C240,120 540,220 880,160 C1160,110 1340,180 1440,190 L1440,240 L0,240 Z" fill="#041a33"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ==================== 2. ABOUT ME ==================== -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="section-title-wrap text-center">
+          <span class="section-subtitle"><i class="fa-solid fa-fish"></i> Menyelami Profil Saya</span>
+          <h2 class="section-title">Tentang Saya</h2>
+          <div class="sea-divider">
+            <span class="line"></span>
+            <i class="fa-solid fa-water sea-icon"></i>
+            <span class="line"></span>
+          </div>
+          <p class="section-intro">
+            Belajar Hal Baru,
+            Merangkai Cerita.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          
+          <!-- Column 1: Personal Bio Card -->
+          <div class="about-card glass-panel bio-card">
+            <div class="card-glow-dot"></div>
+            <div class="bio-header">
+              <div class="bio-avatar-mini">
+                <i class="fa-solid fa-user-graduate"></i>
+              </div>
+              <div>
+                <h3 class="bio-title">Nabila</h3>
+                <span class="bio-role">Mahasiswa Sistem Informasi</span>
+              </div>
+            </div>
+
+            <p class="bio-text">
+              Hai, aku Nabila Nia Febrianti, mahasiswa Sistem Informasi yang tertarik pada dunia web programming. Aku senang mempelajari teknologi dan mengembangkan ide menjadi website yang menarik dan bermanfaat
+
+Saat ini aku sedang belajar HTML dan JavaScript Di luar itu, aku menikmati menonton movie dan belajar bermain gitar, serta mencari inspirasi dari hal-hal sederhana di sekitar.
+            </p>
+            <p class="bio-text">
+              Bagi aku, merancang website dan aplikasi seperti menyelami lautan: selalu ada hal baru untuk dieksplorasi, mulai dari arsitektur informasi, interaksi visual, hingga performa kode yang optimal.
+            </p>
+
+            <!-- Quick Personal Info Grid -->
+            <div class="personal-info-grid">
+              <div class="info-pill">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div>
+                  <span class="info-label">Pendidikan</span>
+                  <span class="info-val">S1 Sistem Informasi</span>
+                </div>
+              </div>
+              <div class="info-pill">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <span class="info-label">Domisili</span>
+                  <span class="info-val">Indonesia</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hobbies & Personal Passions -->
+            <div class="hobbies-section">
+              <h4 class="hobbies-heading"><i class="fa-solid fa-heart"></i> Hobi &amp; Minat Luang</h4>
+              <div class="hobbies-tags">
+                <span class="hobby-tag"><i class="fa-solid fa-guitar"></i> Bermain Gitar</span>
+                <span class="hobby-tag"><i class="fa-solid fa-shirt"></i> Setrika Baju </span>
+                <span class="hobby-tag"><i class="fa-solid fa-book-open-reader"></i> Baca Novel</span>
+                <span class="hobby-tag"><i class="fa-solid fa-headphones"></i> Listening Music</span>
+                <span class="hobby-tag"><i class="fa-solid fa-gamepad"></i> Bermain Free Fire</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. EXPERIENCE & EDUCATION ==================== -->
+    <section class="section experience-section" id="experience">
+      <div class="container">
+        
+        <div class="section-title-wrap text-center">
+          <span class="section-subtitle"><i class="fa-solid fa-anchor"></i> MY JOURNEY SO FAR </span>
+          <h2 class="section-title">Sedikit cerita tentang aku, pengalaman, dan hal-hal yang pernah aku coba</h2>
+          <div class="sea-divider">
+            <span class="line"></span>
+            <i class="fa-solid fa-compass sea-icon"></i>
+            <span class="line"></span>
+          </div>
+          <p class="section-intro">
+            Setiap pengalaman punya cerita dan setiap langkah menjadi bagian dari proses berkembang.
+          </p>
+        </div>
+
+        <!-- Experience cards -->
+        <div class="timeline-container">
+          <!-- Item 1: Pendidikan Kuliah -->
+          <div class="timeline-item">
+            <div class="timeline-badge-node">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="timeline-card glass-panel">
+              <div class="timeline-tag tag-edu">Pendidikan Tinggi</div>
+              <span class="timeline-year"><i class="fa-regular fa-calendar-check"></i> 2026 - Sekarang</span>
+              <h3 class="timeline-role">Sistem Informasi</h3>
+              <h4 class="timeline-place">Fakultas MIPA</h4>
+              <p class="timeline-desc">
+                Sekarang lagi menjalani semester awal di Sistem Informasi. Di sini aku mulai belajar tentang pemrograman, sistem informasi, analisis sistem, dan berbagai hal yang berhubungan dengan teknologi.
+              </p>
+              <div class="timeline-chips">
+                <span>Visual Studio Code</span>
+                <span>Analisis Sistem</span>
+                <span>Figma</span>
+                <span>Pemrograman Dasar</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2: Organisasi Himpunan -->
+          <div class="timeline-item">
+            <div class="timeline-badge-node">
+              <i class="fa-solid fa-people-group"></i>
+            </div>
+            <div class="timeline-card glass-panel">
+              <div class="timeline-tag tag-org">Pengalaman</div>
+              <span class="timeline-year"><i class="fa-regular fa-calendar-check"></i> 2023 - 2026</span>
+              <h3 class="timeline-role">Ekstrakurikuler Seni Tari</h3>
+              <h4 class="timeline-place">Pengalaman Sekolah</h4>
+              <p class="timeline-desc">
+                Selama menempuh pendidikan di SMAN 10 Pontianak, saya pernah mengikuti kegiatan ekstrakurikuler seni tari sebagai salah satu cara untuk mengembangkan minat dan bakat di bidang seni. Melalui kegiatan ini, saya belajar mengenal berbagai gerakan tari, melatih ketepatan gerakan, serta meningkatkan kedisiplinan dan rasa percaya diri. Saya juga belajar pentingnya kerja sama, kekompakkan, dan tanggung jawabdalam mengikuti setiap latihan bersama anggota lain.
+              <div class="timeline-chips">
+                <span>Seni Tari</span>
+                <span>Disiplin</span>
+                <span>Kerja Sama</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4: Prestasi / Sertifikasi -->
+          <div class="timeline-item">
+            <div class="timeline-badge-node">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <div class="timeline-card glass-panel">
+              <div class="timeline-tag tag-award">Prestasi &amp; Sertifikasi</div>
+              <span class="timeline-year"><i class="fa-regular fa-calendar-check"></i> 2023 - 2024</span>
+              <h3 class="timeline-role">Juara 1 Lomba Kaligrafi &amp; Juara Favorit Desain Grafis Hari Guru</h3>
+              <p class="timeline-desc">
+                Dari lomba kaligrafi, aku belajar lebih sabar, teliti, dan rapi dalam membuat karya. Sedangkan dari lomba poster, aku belajar menuangkan ide lewat desain dan mengatur warna, tulisan, serta elemen agar terlihat menarik. Buatku, pengalaman ini bukan cuma soal menang atau kalah, tapi juga tentang berani mencoba dan mengembangkan kemampuan yang aku punya.
+              </p>
+              <div class="timeline-chips">
+                <span>Kaligrafi</span>
+                <span>Desain Grafis</span>
+                <span>Kreativitas</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 5: SMA / Sekolah Menengah -->
+          <div class="timeline-item">
+            <div class="timeline-badge-node">
+              <i class="fa-solid fa-school"></i>
+            </div>
+            <div class="timeline-card glass-panel">
+              <div class="timeline-tag tag-edu">Sekolah Menengah Atas</div>
+              <span class="timeline-year"><i class="fa-regular fa-calendar-check"></i> 2023 - 2026</span>
+              <h3 class="timeline-role">SMA Negeri 10 Pontianak</h3>
+              <h4 class="timeline-place">Jurusan MIPA</h4>
+              <p class="timeline-desc">
+                Masa sekolah yang jadi awal aku mencoba banyak hal, mulai dari kegiatan sekolah, desain grafis, sampai ikut berbagai perlombaan. Dari sini aku mulai tertarik untuk terus belajar dan mengembangkan kemampuan.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 4. PORTFOLIO & PROJECTS ==================== -->
+    <section class="section portfolio-section" id="portfolio">
+      <div class="container">
+        
+        <div class="section-title-wrap text-center">
+          <span class="section-subtitle"><i class="fa-solid fa-gem"></i> Galeri Hasil Karya</span>
+          <h2 class="section-title">Proyek &amp; Portofolio</h2>
+          <div class="sea-divider">
+            <span class="line"></span>
+            <i class="fa-solid fa-sailboat sea-icon"></i>
+            <span class="line"></span>
+          </div>
+          <p class="section-intro">
+            Kumpulan karya desain UI/UX, prototipe aplikasi, dan pengembangan web yang pernah aku rancang dengan teliti.
+          </p>
+        </div>
+
+        <!-- Project Filter Buttons -->
+        <div class="portfolio-filter-group">
+          <button class="filter-btn active" data-filter="all">Semua Karya</button>
+          <button class="filter-btn" data-filter="web">Web Development</button>
+          <button class="filter-btn" data-filter="uiux">UI/UX Design</button>
+          <button class="filter-btn" data-filter="graphic">Desain &amp; Branding</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="portfolio-grid" id="portfolioGrid">
+
+          <!-- Project 1: OceanPulse -->
+          <div class="portfolio-card glass-panel" data-category="web">
+            <div class="portfolio-thumbnail">
+              <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80" alt="OceanPulse Dashboard Monitoring Terumbu Karang">
+              <div class="portfolio-overlay">
+                <button class="overlay-btn view-detail-btn" data-id="1" title="Lihat Detail Proyek">
+                  <i class="fa-solid fa-eye"></i> Detail
+                </button>
+                <a href="#contact" class="overlay-btn" title="Live Preview">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo
+                </a>
+              </div>
+              <span class="category-badge">Web Development</span>
+            </div>
+            <div class="portfolio-info">
+              <h3 class="portfolio-title">OceanPulse - Monitoring Terumbu Karang</h3>
+              <p class="portfolio-desc">
+                Aplikasi dashboard web interaktif untuk memantau suhu laut, tingkat kejernihan air, dan data konservasi ekosistem terumbu karang secara real-time.
+              </p>
+              <div class="tech-stack-pills">
+                <span>HTML5</span>
+                <span>Tailwind CSS</span>
+                <span>JavaScript</span>
+                <span>Chart.js</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: AquaLearn UI/UX -->
+          <div class="portfolio-card glass-panel" data-category="uiux">
+            <div class="portfolio-thumbnail">
+              <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80" alt="AquaLearn - Interactive Ocean Learning App">
+              <div class="portfolio-overlay">
+                <button class="overlay-btn view-detail-btn" data-id="2" title="Lihat Detail Proyek">
+                  <i class="fa-solid fa-eye"></i> Detail
+                </button>
+                <a href="#contact" class="overlay-btn" title="Lihat Prototipe Figma">
+                  <i class="fa-brands fa-figma"></i> Figma
+                </a>
+              </div>
+              <span class="category-badge">UI/UX Design</span>
+            </div>
+            <div class="portfolio-info">
+              <h3 class="portfolio-title">AquaLearn - Platform Edukasi Bahari</h3>
+              <p class="portfolio-desc">
+                Desain prototipe aplikasi mobile edukasi biota laut untuk anak sekolah dengan gamifikasi kuis, ilustrasi 3D laut, dan modul pembelajaran interaktif.
+              </p>
+              <div class="tech-stack-pills">
+                <span>Figma</span>
+                <span>User Research</span>
+                <span>Wireframing</span>
+                <span>Design System</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: MarinaCare -->
+          <div class="portfolio-card glass-panel" data-category="uiux">
+            <div class="portfolio-thumbnail">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80" alt="MarinaCare - Reservasi Ekowisata Bahari">
+              <div class="portfolio-overlay">
+                <button class="overlay-btn view-detail-btn" data-id="3" title="Lihat Detail Proyek">
+                  <i class="fa-solid fa-eye"></i> Detail
+                </button>
+                <a href="#contact" class="overlay-btn" title="Studi Kasus">
+                  <i class="fa-solid fa-file-lines"></i> Case Study
+                </a>
+              </div>
+              <span class="category-badge">UI/UX Design</span>
+            </div>
+            <div class="portfolio-info">
+              <h3 class="portfolio-title">MarinaCare - Reservasi Ekowisata Pesisir</h3>
+              <p class="portfolio-desc">
+                Studi kasus UX perancangan aplikasi pemesanan tiket diving &amp; snorkeling ramah lingkungan dengan fitur jejak karbon dan donasi pelestarian laut.
+              </p>
+              <div class="tech-stack-pills">
+                <span>Figma</span>
+                <span>Usability Testing</span>
+                <span>Prototyping</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: SeaEcho Portal -->
+          <div class="portfolio-card glass-panel" data-category="web">
+            <div class="portfolio-thumbnail">
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80" alt="SeaEcho Web Portal Informasi Kampus">
+              <div class="portfolio-overlay">
+                <button class="overlay-btn view-detail-btn" data-id="4" title="Lihat Detail Proyek">
+                  <i class="fa-solid fa-eye"></i> Detail
+                </button>
+                <a href="#contact" class="overlay-btn" title="Source Code">
+                  <i class="fa-brands fa-github"></i> GitHub
+                </a>
+              </div>
+              <span class="category-badge">Web Development</span>
+            </div>
+            <div class="portfolio-info">
+              <h3 class="portfolio-title">SeaEcho - Portal Informasi Akademik</h3>
+              <p class="portfolio-desc">
+                Pengembangan sistem informasi terpadu kegiatan mahasiswa dengan fitur manajemen jadwal, pengumuman ormawa, dan formulir pendaftaran kegiatan online.
+              </p>
+              <div class="tech-stack-pills">
+                <span>JavaScript</span>
+                <span>CSS Grid</span>
+                <span>PHP</span>
+                <span>MySQL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5: CoralShop -->
+          <div class="portfolio-card glass-panel" data-category="web">
+            <div class="portfolio-thumbnail">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80" alt="CoralShop Eco-friendly E-Commerce">
+              <div class="portfolio-overlay">
+                <button class="overlay-btn view-detail-btn" data-id="5" title="Lihat Detail Proyek">
+                  <i class="fa-solid fa-eye"></i> Detail
+                </button>
+                <a href="#contact" class="overlay-btn" title="Live Preview">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo
+                </a>
+              </div>
+              <span class="category-badge">Web Development</span>
+            </div>
+            <div class="portfolio-info">
+              <h3 class="portfolio-title">CoralLife - Toko Online Produk Zero Waste</h3>
+              <p class="portfolio-desc">
+                Toko daring ramah lingkungan dengan antarmuka segar, keranjang belanja dinamis, filter kategori pintar, serta integrasi simulasi kalkulator ongkos kirim.
+              </p>
+              <div class="tech-stack-pills">
+                <span>HTML / CSS</span>
+                <span>Vanilla JS</span>
+                <span>API Rest</span>
+                <span>Responsive</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6: Ocean Brand Identity -->
+          <div class="portfolio-card glass-panel" data-category="graphic">
+            <div class="portfolio-thumbnail">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=700&q=80" alt="DeepSea Brand Identity & Assets">
+              <div class="portfolio-overlay">
+                <button class="overlay-btn view-detail-btn" data-id="6" title="Lihat Detail Proyek">
+                  <i class="fa-solid fa-eye"></i> Detail
+                </button>
+                <a href="#contact" class="overlay-btn" title="Behance View">
+                  <i class="fa-brands fa-behance"></i> Behance
+                </a>
+              </div>
+              <span class="category-badge">Desain &amp; Branding</span>
+            </div>
+            <div class="portfolio-info">
+              <h3 class="portfolio-title">DeepSea - Identitas Visual &amp; Media Kit</h3>
+              <p class="portfolio-desc">
+                Perancangan logo, panduan palet warna, tipografi, dan template media sosial untuk kampanye pelestarian ekosistem pesisir generasi muda.
+              </p>
+              <div class="tech-stack-pills">
+                <span>Canva Pro</span>
+                <span>Illustrator</span>
+                <span>Brand Guidelines</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="achievement-gallery certificate-gallery">
+          <div class="achievement-gallery-heading">
+            <div>
+              <span class="achievement-kicker"><i class="fa-solid fa-award"></i> Galeri Prestasi</span>
+              <h3>Sertifikat</h3>
+            </div>
+            <div class="achievement-controls" aria-label="Kontrol galeri sertifikat">
+              <button type="button" class="achievement-arrow" data-scroll-target="certificateTrack" data-direction="-1" aria-label="Geser sertifikat ke kiri">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button type="button" class="achievement-arrow" data-scroll-target="certificateTrack" data-direction="1" aria-label="Geser sertifikat ke kanan">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="achievement-track" id="certificateTrack">
+            <article class="achievement-card glass-panel">
+              <div class="portfolio-thumbnail achievement-thumbnail landscape">
+                <img src="assets/sertifikat-juara-1-kaligrafi.jpeg" alt="Sertifikat Juara 1 Lomba Kaligrafi Nabila Nia Febrianti">
+              </div>
+              <div class="portfolio-info">
+                <span class="category-badge">Sertifikat</span>
+                <h3 class="portfolio-title">Juara 1 Lomba Kaligrafi</h3>
+                <p class="portfolio-desc">Sertifikat penghargaan lomba kaligrafi yang diselenggarakan pada 23 Februari 2024.</p>
+                <button class="overlay-btn view-detail-btn achievement-detail-btn" type="button" data-id="7">
+                  <i class="fa-solid fa-eye"></i> Detail
+                </button>
+              </div>
+            </article>
+
+            <article class="achievement-card glass-panel">
+              <div class="portfolio-thumbnail achievement-thumbnail portrait">
+                <div class="achievement-placeholder">
+                  <i class="fa-solid fa-certificate"></i>
+                  <span>Sertifikat Potret</span>
+                </div>
+              </div>
+              <div class="portfolio-info">
+                <span class="category-badge">Sertifikat</span>
+                <h3 class="portfolio-title">Sertifikat Potret</h3>
+                <p class="portfolio-desc">Tempat untuk menambahkan sertifikat berorientasi potret.</p>
+                <button class="overlay-btn view-detail-btn achievement-detail-btn" type="button" data-id="8">
+                  <i class="fa-solid fa-eye"></i> Detail
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="design-gallery">
+          <h2 class="design-section-title">Ide yang jadi <em>karya.</em></h2>
+          <div class="design-grid">
+            <button class="design-work-card view-detail-btn" type="button" data-id="9" aria-label="Lihat detail Poster Hari Guru">
+              <span class="design-work-image">
+                <img src="assets/desain-lomba-penghijauan.png" alt="Poster Hari Guru bertema semangat, prestasi, dan cita-cita">
+              </span>
+              <span class="design-work-caption">
+                <span class="design-work-copy">
+                  <strong>Poster Hari Guru</strong>
+                  <small>Poster pendidikan · Inspirasi</small>
+                </span>
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </span>
+            </button>
+
+            <button class="design-work-card view-detail-btn" type="button" data-id="10" aria-label="Lihat detail Poster Meneladani Hikmah Isra Mi'raj">
+              <span class="design-work-image">
+                <img src="assets/desain-lomba-isra-miraj.png" alt="Poster edukasi tentang hikmah Isra Mi'raj dalam kehidupan sehari-hari">
+              </span>
+              <span class="design-work-caption">
+                <span class="design-work-copy">
+                  <strong>Poster Meneladani Hikmah Isra Mi'raj</strong>
+                  <small>Poster edukasi · Isra Mi'raj</small>
+                </span>
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+          <p class="design-gallery-hint">Pilih karya untuk melihat detailnya.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 5. BLOG MATERI ==================== -->
+    <section class="section blog-section" id="blog">
+      <div class="container">
+        <div class="section-title-wrap text-center">
+          <span class="section-subtitle"><i class="fa-solid fa-book-open-reader"></i> Catatan &amp; Pembelajaran</span>
+          <h2 class="section-title">Ringkasan Materi PARTISI</h2>
+          <div class="sea-divider">
+            <span class="line"></span>
+            <i class="fa-solid fa-fish sea-icon"></i>
+            <span class="line"></span>
+          </div>
+          <p class="section-intro">
+            Ini adalah beberapa ringkasan materi selama aku mengikuti kegiatan PARTISI
+          </p>
+        </div>
+
+        <div class="blog-grid">
+          <article class="blog-card glass-panel">
+            <div class="blog-card-icon" aria-hidden="true">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <div class="blog-card-content">
+              <span class="blog-category">PENGKADERAN &amp; ORGANISASI</span>
+              <h3>Ringkasan PARTISI 1</h3>
+              <p>Ringkasan materi PARTISI 1 yang membahas pengenalan dan organisasi HMSI, budaya kampus dan etika mahasiswa, serta esensi pengkaderan mahasiswa Sistem Informasi</p>
+              <button class="blog-open-btn" type="button" data-blog="web">
+                Buka 3 Materi<i class="fa-solid fa-arrow-right-long"></i>
+              </button>
+            </div>
+          </article>
+
+          <article class="blog-card glass-panel">
+            <div class="blog-card-icon" aria-hidden="true">
+              <i class="fa-solid fa-comments"></i>
+            </div>
+            <div class="blog-card-content">
+              <span class="blog-category">PUBLIC SPEAKING &amp; KESEHATAN MENTAL</span>
+              <h3>Ringkasan PARTISI 2</h3>
+              <p>Pembahasan teknik public speaking, komunikasi efektif, pengembangan diri, pengenalan potensi, serta pentingnya menjaga kesehatan mental bagi mahasiswa</p>
+              <button class="blog-open-btn" type="button" data-blog="uiux">
+                Buka 2 Materi<i class="fa-solid fa-arrow-right-long"></i>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. CONTACT & FOOTER ==================== -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        
+        <div class="section-title-wrap text-center">
+          <span class="section-subtitle"><i class="fa-solid fa-envelope-open-text"></i> Punya Ide Seru? Ayo Ngobrol</span>
+          <h2 class="section-title">Kontak &amp; Sosial Media</h2>
+          <div class="sea-divider">
+            <span class="line"></span>
+            <i class="fa-solid fa-envelope sea-icon"></i>
+            <span class="line"></span>
+          </div>
+          <p class="section-intro">
+            Ayo kita belajar, bercerita, dan berkolaborasi barengg!!!!
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          
+          <!-- Contact Direct Information -->
+          <div class="contact-info-card glass-panel">
+            <div class="contact-info-header">
+              <h3 class="info-title">Mari Berkomunikasi</h3>
+              <p class="info-desc">
+                Aku selalu antusias menyambut kolaborasi di bidang pembuatan web, desain antarmuka pengguna, maupun proyek digital lainnya.
+              </p>
+            </div>
+
+            <!-- Contact Channels -->
+            <div class="contact-channels">
+              
+              <a href="mailto:nabilaniafebrianti8@gmail.com" class="channel-item">
+                <div class="channel-icon mail-icon">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="channel-details">
+                  <span class="channel-label">Email Resmi</span>
+                  <span class="channel-val">nabilaniafebrianti8@gmail.com</span>
+                </div>
+              </a>
+
+              <a href="https://github.com/nabilajeliks" target="_blank" rel="noopener noreferrer" class="channel-item">
+                <div class="channel-icon git-icon">
+                  <i class="fa-brands fa-github"></i>
+                </div>
+                <div class="channel-details">
+                  <span class="channel-label">GitHub</span>
+                  <span class="channel-val">github.com/nabilajeliks</span>
+                </div>
+              </a>
+
+              <a href="https://instagram.com/nblanfbrnti_" target="_blank" rel="noopener noreferrer" class="channel-item">
+                <div class="channel-icon ig-icon">
+                  <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div class="channel-details">
+                  <span class="channel-label">Instagram</span>
+                  <span class="channel-val">@nblanfbrnti_</span>
+                </div>
+              </a>
+
+              <a href="https://wa.me/6289526466676" target="_blank" rel="noopener noreferrer" class="channel-item">
+                <div class="channel-icon whatsapp-icon">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div class="channel-details">
+                  <span class="channel-label">WhatsApp</span>
+                  <span class="channel-val">089526466676</span>
+                </div>
+              </a>
+
+            </div>
+
+            <!-- Quote in Oceanic Script -->
+            <div class="contact-ocean-quote">
+              <p>"Seperti ombak yang konsisten membentuk karang, dedikasi dan ketekunan melahirkan karya terbaik."</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer-wrapper">
+    <!-- Top Wave Graphic -->
+    <div class="footer-wave-top">
+      <svg viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,32 C360,90 720,0 1080,60 C1260,90 1380,40 1440,50 L1440,120 L0,120 Z" fill="#011627"/>
+      </svg>
+    </div>
+
+    <div class="footer-body">
+      <div class="container footer-content">
+        
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg viewBox="0 0 50 50" fill="none" class="brand-wave-svg">
+              <path d="M10 32C15 22 25 20 30 25C35 30 40 22 45 15C42 35 25 42 10 32Z" fill="#00b4d8"/>
+            </svg>
+            <span>NABILA • PORTOFOLIO </span>
+          </div>
+          <p class="footer-tagline">
+            Menggabungkan empati estetika laut dengan logika pemrograman yang solid untuk menghadirkan pengalaman web yang berkesan.
+          </p>
+        </div>
+
+        <!-- Social Media Fast Links -->
+        <div class="footer-social-section">
+          <h4 class="footer-heading">Tautan Sosial Media</h4>
+          <div class="social-icons-row">
+            <a href="https://instagram.com/nblanfbrnti_" target="_blank" rel="noopener noreferrer" class="social-pill" title="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+              <span>Instagram</span>
+            </a>
+            <a href="https://github.com/nabilajeliks" target="_blank" rel="noopener noreferrer" class="social-pill" title="GitHub">
+              <i class="fa-brands fa-github"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://wa.me/6289526466676" target="_blank" rel="noopener noreferrer" class="social-pill" title="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>WhatsApp</span>
+            </a>
+            <a href="mailto:nabilaniafebrianti8@gmail.com" class="social-pill" title="Kirim Email">
+              <i class="fa-solid fa-envelope"></i>
+              <span>Email</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar container">
+        <p>&copy; 2026 Nabila. Dibuat dengan antusiasme tema lautan &amp; sentuhan kode yang bersih.</p>
+        <button id="backToTop" class="back-to-top-btn" title="Kembali ke Atas" aria-label="Kembali ke Atas">
+          <i class="fa-solid fa-arrow-up"></i>
+          <span>Kembali ke Atas</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL DETAIL PROYEK ==================== -->
+  <div class="modal-overlay" id="projectModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window glass-panel">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Tutup Detail Proyek">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <div class="modal-body" id="modalBody">
+        <!-- Content will be injected dynamically via script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL BLOG MATERI ==================== -->
+  <div class="modal-overlay" id="blogModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window glass-panel blog-modal-window">
+      <button class="modal-close-btn" id="blogModalCloseBtn" aria-label="Tutup Blog Materi">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-body" id="blogModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
